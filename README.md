@@ -1,5 +1,11 @@
 ## Running Drawbridge prototype locally
-To build for deployment, skip to [Build images, create and run containers](#buildandrun)
+To build for deployment, clone and skip to [8. Build images, create and run containers](#buildandrun)
+
+### 0. TL;DR macOS/Homebrew setup
+```
+git clone git@github.com:vulcanize/drawbridge $GOPATH/src/github.com/vulcanize/drawbridge
+make require && make setup && make dep && make compile && make setup-database && make migrate-database
+```
 
 ### 1. Requirements
 - [postgres](https://postgresql.org)
@@ -12,6 +18,11 @@ To build for deployment, skip to [Build images, create and run containers](#buil
 
 #### Meeting requirements on macOS with Homebrew
 If you're running macOS, use Homebrew, and already have some of the requirements, skip to what you need.
+
+You can use the included script to automatically check for the necessary requirements. If you've updated to bash 4, it will also install them for you.
+```
+./requirements.sh
+```
 
 ##### Postgres
 ```
