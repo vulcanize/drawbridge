@@ -1,12 +1,12 @@
 FROM golang:1.10-alpine as builder
 
-MAINTAINER Matthew Slipper <kyokan.io>
+MAINTAINER Alex Kawas <vulcanize.io>
 
-COPY . /go/src/github.com/kyokan/drawbridge
+COPY . /go/src/github.com/vulcanize/drawbridge
 
 ENV GODEBUG netdns=cgo
 
-WORKDIR /go/src/github.com/kyokan/drawbridge
+WORKDIR /go/src/github.com/vulcanize/drawbridge
 
 RUN apk add --no-cache \
     alpine-sdk \
@@ -16,8 +16,8 @@ RUN apk add --no-cache \
 &&  npm i -g truffle \
 &&  cd solidity \
 &&  npm install --ignore-scripts \
-&&  cd /go/src/github.com/kyokan/drawbridge \
-&&  mv /go/src/github.com/kyokan/drawbridge/docker/drawbridge/abigen /bin/ \
+&&  cd /go/src/github.com/vulcanize/drawbridge \
+&&  mv /go/src/github.com/vulcanize/drawbridge/docker/drawbridge/abigen /bin/ \
 &&  go get -v github.com/ethereum/go-ethereum \
 &&  dep ensure -v \
 &&  cp -r \
@@ -27,6 +27,6 @@ RUN apk add --no-cache \
 
 FROM alpine as final
 
-COPY --from=builder /go/src/github.com/kyokan/drawbridge/build/drawbridge /bin/
+COPY --from=builder /go/src/github.com/vulcanize/drawbridge/build/drawbridge /bin/
 COPY start-drawbridge.sh .
 RUN chmod +x start-drawbridge.sh

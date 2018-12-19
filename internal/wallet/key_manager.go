@@ -6,7 +6,7 @@ import (
 	ethcrypto "github.com/ethereum/go-ethereum/crypto"
 	"math/big"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/kyokan/drawbridge/pkg/crypto"
+	"github.com/vulcanize/drawbridge/pkg/crypto"
 )
 
 type KeyManager struct {

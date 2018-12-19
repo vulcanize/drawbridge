@@ -3,7 +3,7 @@ package txout
 import (
 	"github.com/ethereum/go-ethereum/common"
 	"io"
-	"github.com/kyokan/drawbridge/pkg/eth"
+	"github.com/vulcanize/drawbridge/pkg/eth"
 )
 
 type Multisig struct {

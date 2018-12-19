@@ -6,8 +6,8 @@ import (
 	"time"
 	"math/big"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/kyokan/drawbridge/internal/conv"
-	"github.com/kyokan/drawbridge/pkg/txout"
+	"github.com/vulcanize/drawbridge/internal/conv"
+	"github.com/vulcanize/drawbridge/pkg/txout"
 	"bytes"
 )
 

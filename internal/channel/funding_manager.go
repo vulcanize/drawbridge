@@ -1,17 +1,17 @@
 package channel
 
 import (
-	"github.com/kyokan/drawbridge/internal/p2p"
+	"github.com/vulcanize/drawbridge/internal/p2p"
 	"math/big"
 	"github.com/go-errors/errors"
-	"github.com/kyokan/drawbridge/internal/wallet"
+	"github.com/vulcanize/drawbridge/internal/wallet"
 	"github.com/lightningnetwork/lnd/lnwire"
-	"github.com/kyokan/drawbridge/pkg"
+	"github.com/vulcanize/drawbridge/pkg"
 	"math"
 	"github.com/btcsuite/btcutil"
-	"github.com/kyokan/drawbridge/internal/db"
-	"github.com/kyokan/drawbridge/internal/ethclient"
-	"github.com/kyokan/drawbridge/pkg/crypto"
+	"github.com/vulcanize/drawbridge/internal/db"
+	"github.com/vulcanize/drawbridge/internal/ethclient"
+	"github.com/vulcanize/drawbridge/pkg/crypto"
 )
 
 type FundingManager struct {

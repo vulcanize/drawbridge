@@ -2,7 +2,7 @@ package types
 
 import (
 	"math/big"
-	"github.com/kyokan/drawbridge/pkg/crypto"
+	"github.com/vulcanize/drawbridge/pkg/crypto"
 )
 
 type Channel struct {

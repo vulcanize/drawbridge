@@ -1,13 +1,13 @@
 package api
 
 import (
-	"github.com/kyokan/drawbridge/internal/ethclient"
+	"github.com/vulcanize/drawbridge/internal/ethclient"
 	"net/http"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"go.uber.org/zap"
-	"github.com/kyokan/drawbridge/internal/logger"
-	"github.com/kyokan/drawbridge/pkg/crypto"
-	"github.com/kyokan/drawbridge/internal/protocol"
+	"github.com/vulcanize/drawbridge/internal/logger"
+	"github.com/vulcanize/drawbridge/pkg/crypto"
+	"github.com/vulcanize/drawbridge/internal/protocol"
 )
 
 var fsLog *zap.SugaredLogger

@@ -3,15 +3,15 @@ package p2p
 import (
 	"github.com/lightningnetwork/lnd/lnwire"
 	"go.uber.org/zap"
-	"github.com/kyokan/drawbridge/internal/logger"
+	"github.com/vulcanize/drawbridge/internal/logger"
 	"bytes"
 	"time"
 	"io"
 	"sync/atomic"
 	"sync"
 	"github.com/lightningnetwork/lnd/brontide"
-	"github.com/kyokan/drawbridge/pkg/crypto"
-	"github.com/kyokan/drawbridge/pkg/wire"
+	"github.com/vulcanize/drawbridge/pkg/crypto"
+	"github.com/vulcanize/drawbridge/pkg/wire"
 )
 
 var pLog *zap.SugaredLogger

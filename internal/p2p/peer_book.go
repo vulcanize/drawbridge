@@ -2,7 +2,7 @@ package p2p
 
 import (
 	"sync"
-	"github.com/kyokan/drawbridge/pkg/crypto"
+	"github.com/vulcanize/drawbridge/pkg/crypto"
 )
 
 type PeerBook struct {

@@ -3,9 +3,9 @@ package api
 import (
 		"net/http"
 		"go.uber.org/zap"
-	"github.com/kyokan/drawbridge/internal/logger"
-	"github.com/kyokan/drawbridge/pkg/crypto"
-	"github.com/kyokan/drawbridge/internal/protocol"
+	"github.com/vulcanize/drawbridge/internal/logger"
+	"github.com/vulcanize/drawbridge/pkg/crypto"
+	"github.com/vulcanize/drawbridge/internal/protocol"
 	"math/big"
 )
 

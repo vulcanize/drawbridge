@@ -4,9 +4,9 @@ import (
 	"sync"
 	"github.com/lightningnetwork/lnd/lnwire"
 	"go.uber.org/zap"
-	"github.com/kyokan/drawbridge/internal/logger"
+	"github.com/vulcanize/drawbridge/internal/logger"
 	"time"
-	"github.com/kyokan/drawbridge/pkg/wire"
+	"github.com/vulcanize/drawbridge/pkg/wire"
 )
 
 type Reactor struct {

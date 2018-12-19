@@ -5,7 +5,7 @@ import (
 	"github.com/lightningnetwork/lnd/lnwire"
 	"strings"
 	"errors"
-	"github.com/kyokan/drawbridge/pkg/crypto"
+	"github.com/vulcanize/drawbridge/pkg/crypto"
 )
 
 func ResolveAddrs(addrs []string) ([]*lnwire.NetAddress, error) {

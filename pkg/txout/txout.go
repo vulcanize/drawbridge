@@ -8,8 +8,8 @@ import (
 	"github.com/ethereum/go-ethereum/common/math"
 	"github.com/ethereum/go-ethereum/crypto/sha3"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/kyokan/drawbridge/internal/conv"
-	"github.com/kyokan/drawbridge/pkg/crypto"
+	"github.com/vulcanize/drawbridge/internal/conv"
+	"github.com/vulcanize/drawbridge/pkg/crypto"
 	"bytes"
 	"encoding/binary"
 )

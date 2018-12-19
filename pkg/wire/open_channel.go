@@ -2,7 +2,7 @@ package wire
 
 import (
 	"math/big"
-	"github.com/kyokan/drawbridge/pkg/crypto"
+	"github.com/vulcanize/drawbridge/pkg/crypto"
 	"github.com/lightningnetwork/lnd/lnwire"
 	"io"
 )

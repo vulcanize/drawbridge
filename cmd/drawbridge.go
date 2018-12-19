@@ -2,12 +2,12 @@ package main
 
 import (
 	"github.com/spf13/cobra"
-	"github.com/kyokan/drawbridge/internal"
+	"github.com/vulcanize/drawbridge/internal"
 	"github.com/spf13/viper"
 	"fmt"
 	"os"
 	"go.uber.org/zap"
-	"github.com/kyokan/drawbridge/internal/logger"
+	"github.com/vulcanize/drawbridge/internal/logger"
 )
 
 var configFile string

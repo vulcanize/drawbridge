@@ -6,14 +6,14 @@ import (
 	"fmt"
 	"time"
 	"golang.org/x/net/context"
-	"github.com/kyokan/drawbridge/internal/logger"
+	"github.com/vulcanize/drawbridge/internal/logger"
 	"go.uber.org/zap"
 	"io/ioutil"
 	"google.golang.org/grpc/credentials"
 	"github.com/lightningnetwork/lnd/macaroons"
 	"gopkg.in/macaroon.v2"
-	"github.com/kyokan/drawbridge/pkg/crypto"
-	"github.com/kyokan/drawbridge/internal/conv"
+	"github.com/vulcanize/drawbridge/pkg/crypto"
+	"github.com/vulcanize/drawbridge/internal/conv"
 	"github.com/go-errors/errors"
 )
 

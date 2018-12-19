@@ -3,7 +3,7 @@ package protocol
 import (
 	"github.com/lightningnetwork/lnd/lnwire"
 	"github.com/go-errors/errors"
-	"github.com/kyokan/drawbridge/internal/p2p"
+	"github.com/vulcanize/drawbridge/internal/p2p"
 )
 
 type PingPongHandler struct {}

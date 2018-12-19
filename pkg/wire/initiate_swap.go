@@ -4,7 +4,7 @@ import (
 		"github.com/lightningnetwork/lnd/lnwire"
 	"io"
 		"math/big"
-	"github.com/kyokan/drawbridge/pkg/crypto"
+	"github.com/vulcanize/drawbridge/pkg/crypto"
 	)
 
 type InitiateSwap struct {

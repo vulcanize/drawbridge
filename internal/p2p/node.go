@@ -2,7 +2,7 @@ package p2p
 
 import (
 	"go.uber.org/zap"
-	"github.com/kyokan/drawbridge/internal/logger"
+	"github.com/vulcanize/drawbridge/internal/logger"
 	"net"
 	"github.com/btcsuite/btcd/connmgr"
 	"time"
@@ -12,7 +12,7 @@ import (
 	"github.com/lightningnetwork/lnd/brontide"
 	"github.com/lightningnetwork/lnd/lnwire"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/kyokan/drawbridge/pkg/crypto"
+	"github.com/vulcanize/drawbridge/pkg/crypto"
 )
 
 var nLog *zap.SugaredLogger

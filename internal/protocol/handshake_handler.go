@@ -1,11 +1,11 @@
 package protocol
 
 import (
-	"github.com/kyokan/drawbridge/internal/lndclient"
+	"github.com/vulcanize/drawbridge/internal/lndclient"
 	"github.com/lightningnetwork/lnd/lnwire"
-	"github.com/kyokan/drawbridge/pkg/wire"
+	"github.com/vulcanize/drawbridge/pkg/wire"
 	"github.com/go-errors/errors"
-	"github.com/kyokan/drawbridge/internal/p2p"
+	"github.com/vulcanize/drawbridge/internal/p2p"
 )
 
 type HandshakeHandler struct {

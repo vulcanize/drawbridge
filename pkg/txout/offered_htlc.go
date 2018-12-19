@@ -4,7 +4,7 @@ import (
 	"math/big"
 	"github.com/ethereum/go-ethereum/common"
 	"io"
-	"github.com/kyokan/drawbridge/internal/conv"
+	"github.com/vulcanize/drawbridge/internal/conv"
 )
 
 type OfferedHTLC struct {

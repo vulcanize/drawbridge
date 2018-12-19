@@ -3,4 +3,9 @@
 pkg/contracts/**
 !pkg/contracts/.keep
 vendor
+
 local-config.yml
+
+.go-version
+package-lock.json
+start-drawbridge.sh

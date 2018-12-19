@@ -5,11 +5,11 @@ import (
 	"github.com/lightningnetwork/lnd/lnwire"
 	"encoding/binary"
 	"github.com/go-errors/errors"
-	"github.com/kyokan/drawbridge/pkg/crypto"
+	"github.com/vulcanize/drawbridge/pkg/crypto"
 	"net"
 	"github.com/btcsuite/btcd/btcec"
 	"math/big"
-	"github.com/kyokan/drawbridge/internal/conv"
+	"github.com/vulcanize/drawbridge/internal/conv"
 	"reflect"
 	"github.com/ethereum/go-ethereum/common"
 )

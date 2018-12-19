@@ -2,7 +2,7 @@ package wire
 
 import (
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/kyokan/drawbridge/pkg/crypto"
+	"github.com/vulcanize/drawbridge/pkg/crypto"
 	"github.com/lightningnetwork/lnd/lnwire"
 	"io"
 )

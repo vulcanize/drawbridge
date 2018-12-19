@@ -1,21 +1,21 @@
 package protocol
 
 import (
-	"github.com/kyokan/drawbridge/internal/lndclient"
-	"github.com/kyokan/drawbridge/internal/ethclient"
+	"github.com/vulcanize/drawbridge/internal/lndclient"
+	"github.com/vulcanize/drawbridge/internal/ethclient"
 	"sync"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/lightningnetwork/lnd/lnwire"
 	"math/big"
-	"github.com/kyokan/drawbridge/pkg/crypto"
+	"github.com/vulcanize/drawbridge/pkg/crypto"
 	"github.com/lightningnetwork/lnd/lnrpc"
-	"github.com/kyokan/drawbridge/internal/db"
-	"github.com/kyokan/drawbridge/pkg/wire"
+	"github.com/vulcanize/drawbridge/internal/db"
+	"github.com/vulcanize/drawbridge/pkg/wire"
 	"errors"
-	"github.com/kyokan/drawbridge/pkg/txout"
-	"github.com/kyokan/drawbridge/internal/wallet"
+	"github.com/vulcanize/drawbridge/pkg/txout"
+	"github.com/vulcanize/drawbridge/internal/wallet"
 	"crypto/sha256"
-	"github.com/kyokan/drawbridge/internal/p2p"
+	"github.com/vulcanize/drawbridge/internal/p2p"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
 

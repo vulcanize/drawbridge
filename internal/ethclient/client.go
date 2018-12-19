@@ -1,7 +1,7 @@
 package ethclient
 
 import (
-	"github.com/kyokan/drawbridge/pkg/contracts"
+	"github.com/vulcanize/drawbridge/pkg/contracts"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"math/big"
@@ -9,10 +9,10 @@ import (
 	"context"
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/rpc"
-	"github.com/kyokan/drawbridge/internal/wallet"
-	"github.com/kyokan/drawbridge/pkg/crypto"
-	"github.com/kyokan/drawbridge/internal/conv"
-	"github.com/kyokan/drawbridge/pkg/txout"
+	"github.com/vulcanize/drawbridge/internal/wallet"
+	"github.com/vulcanize/drawbridge/pkg/crypto"
+	"github.com/vulcanize/drawbridge/internal/conv"
+	"github.com/vulcanize/drawbridge/pkg/txout"
 		)
 
 type DepositResult struct {

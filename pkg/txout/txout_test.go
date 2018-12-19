@@ -6,7 +6,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"math/big"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/kyokan/drawbridge/internal/wallet"
+	"github.com/vulcanize/drawbridge/internal/wallet"
 	)
 
 var km *wallet.KeyManager

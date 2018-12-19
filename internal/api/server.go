@@ -5,7 +5,7 @@ import (
 	"github.com/gorilla/rpc/json"
 	"net/http"
 	"go.uber.org/zap"
-	"github.com/kyokan/drawbridge/internal/logger"
+	"github.com/vulcanize/drawbridge/internal/logger"
 )
 
 const StatusOk = "OK"

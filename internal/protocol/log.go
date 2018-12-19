@@ -2,7 +2,7 @@ package protocol
 
 import (
 	"go.uber.org/zap"
-	"github.com/kyokan/drawbridge/internal/logger"
+	"github.com/vulcanize/drawbridge/internal/logger"
 )
 
 var log *zap.SugaredLogger
