@@ -2,22 +2,14 @@ require:
 	@./requirements.sh
 
 setup: require
-	@./gopath.sh
 	@echo GOPATH=$(GOPATH)
-	export GODEBUG=netdns=cgo
 	cd $(GOPATH)/src/github.com/vulcanize/drawbridge
 	git config url."git@github.com:".insteadOf "https://github.com/"
-	curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-	npm install -g truffle
-	cd solidity
-	npm i —ignore-scripts
-	cd ..
+	cd solidity; npm i --ignore-scripts
 	go get -v github.com/ethereum/go-ethereum
 
 setup-database:
-	createuser postgres
-	createdb drawbridge_2
-	export DATABASE_URL=postgres://postgres@localhost:5432/drawbridge_2?sslmode=disable
+	@./setup-database.sh
 	
 compile-contracts:
 	@$(MAKE) -C ./solidity compile
@@ -25,7 +17,8 @@ compile-contracts:
 migrate-contracts:
 	@$(MAKE) -C ./solidity migrate
 
-migrate-database:
+migrate-database: setup-database
+	@echo DATABASE_URL=$(DATABASE_URL)
 	migrate -database "$(DATABASE_URL)" -path ./migrations up
 
 create-db-migration:
@@ -52,7 +45,6 @@ compile: abigen
 	go build -gcflags='-N -l' -o ./build/drawbridge ./cmd/drawbridge.go
 
 dep:
-	@./gopath.sh
 	@echo GOPATH=$(GOPATH)
 	dep ensure -v
 	cp -r \

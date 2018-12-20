@@ -10,7 +10,7 @@ fi
 
 echo "Checking for requirements..."
 
-declare -a REQS=("brew" "postgres" "node" "go" "migrate" "docker" "geth")
+declare -a REQS=("brew" "postgres" "node" "go" "migrate" "docker" "geth" "dep" "truffle")
 
 if $INSTALL; then
   declare -A INSTALLERS
@@ -21,6 +21,8 @@ if $INSTALL; then
   INSTALLERS[migrate]="brew install golang-migrate"
   INSTALLERS[docker]="brew cask install docker"
   INSTALLERS[geth]="brew tap ethereum/ethereum && brew install ethereum"
+  INSTALLERS[dep]="curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh"
+  INSTALLERS[truffle]="npm install -g truffle@^4.0.0"
 fi
 
 for CMD in "${REQS[@]}"; do
