@@ -1,16 +1,18 @@
 ## Running Drawbridge prototype locally
-To build for deployment, clone and skip to [8. Build images, create and run containers](#buildandrun)
+To build for deployment, clone and skip to [Build images, create and run containers](#buildandrun)
 
 ### 0. TL;DR macOS/Homebrew setup
 ```
 git clone git@github.com:vulcanize/drawbridge $GOPATH/src/github.com/vulcanize/drawbridge
 cd $GOPATH/src/github.com/vulcanize/drawbridge
 source envvars.sh
-make setup && make dep && make compile && make migrate-database
+make setup && make dep && make migrate-both-databases
 make develop >> ganache.log 2>&1 &
 make migrate-contracts
-... # TODO build containers, start lnd
-./start-drawbridge.sh
+cd docker && docker-compose up
+cd ..
+make start >> db_alice.log 2>&1 &
+./start-drawbridge.sh >> db_bob.log 2>&1 &
 ```
 
 
@@ -88,38 +90,27 @@ make dep
 make compile
 ```
 
-### 5. Setup database
+### 5. Setup databases
 ```
-make migrate-database
-```
-
-### 6. Construct local config
-```
-TODO
+make migrate-both-databases
 ```
 
-### 7. Build images, create and run containers <a name="buildandrun"></a>
+### 6. Build images, create and run containers <a name="buildandrun"></a>
 ```
-cd docker
-docker-compose up
+cd docker && docker-compose up
 ```
 
-### 8. Setup Ethereum node and create Lightning payment contracts
+### 7. Setup Ethereum node and create Lightning payment contracts
 ```
 make develop >> ganache.log 2>&1 &
 make migrate-contracts
 ```
 
-### 9. Setup Lightning Network daemon node
+### 8. Run 2 Drawbridge services
 ```
-TODO
+make start >> db_alice.log 2>&1 &
+./start-drawbridge.sh >> db_bob.log 2>&1 &
 ```
-
-### 10. Run Drawbridge
-```
-./start-drawbridge.sh
-```
-
 
 ## Testing Drawbridge
 ```
@@ -127,4 +118,5 @@ cd solidity
 make develop >> test.log 2>&1 &
 cd ..
 make test
-
+./integration-test.sh
+```

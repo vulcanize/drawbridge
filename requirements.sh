@@ -15,7 +15,7 @@ declare -a REQS=("brew" "postgres" "node" "go" "migrate" "docker" "geth" "dep" "
 if $INSTALL; then
   declare -A INSTALLERS
   INSTALLERS[brew]="/usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
-  INSTALLERS[postgres]="brew install postgres"
+  INSTALLERS[postgres]="brew install postgres && pg_ctl -D /usr/local/var/postgres start"
   INSTALLERS[node]="brew install nodenv && nodenv install 10.14.0 && nodenv global 10.14.0"
   INSTALLERS[go]="brew install goenv && goenv install 1.10.0 && goenv global 1.10.0"
   INSTALLERS[migrate]="brew install golang-migrate"

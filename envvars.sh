@@ -8,6 +8,7 @@ if [ -z "$GOPATH" ]; then
 fi
 
 if [ -z "$DATABASE_URL" ]; then
-  echo "Setting \$DATABASE_URL"
-  export DATABASE_URL=postgres://postgres@localhost:5432?sslmode=disable
+  echo "Setting \$DATABASE_URLs"
+  export DATABASE_URL=postgres://postgres@localhost:5432/drawbridge?sslmode=disable
+  export DATABASE_URL_2=postgres://postgres@localhost:5432/drawbridge_2?sslmode=disable
 fi

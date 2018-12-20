@@ -4,10 +4,8 @@ pkg/contracts/**
 !pkg/contracts/.keep
 vendor
 
-local-config.yml
-
 .python-version
 .node-version
 .go-version
 package-lock.json
-start-drawbridge.sh
+*.log

@@ -21,6 +21,12 @@ migrate-database: setup-database
 	@echo DATABASE_URL=$(DATABASE_URL)
 	migrate -database "$(DATABASE_URL)" -path ./migrations up
 
+migrate-both-databases: setup-database
+	@echo DATABASE_URL=$(DATABASE_URL)
+	@echo DATABASE_URL_2=$(DATABASE_URL_2)
+	migrate -database "$(DATABASE_URL)" -path ./migrations up
+	migrate -database "$(DATABASE_URL_2)" -path ./migrations up
+
 create-db-migration:
 	cd  ./migrations && migrate create -ext sql $(MIGRATION_NAME)
 
