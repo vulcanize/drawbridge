@@ -4,7 +4,8 @@ To build for deployment, clone and skip to [8. Build images, create and run cont
 ### 0. TL;DR macOS/Homebrew setup
 ```
 git clone git@github.com:vulcanize/drawbridge $GOPATH/src/github.com/vulcanize/drawbridge
-make require && make setup && make dep && make compile && make setup-database && make migrate-database
+cd $GOPATH/src/github.com/vulcanize/drawbridge
+make setup && make dep && make compile && make setup-database && make migrate-database
 ```
 
 ### 1. Requirements

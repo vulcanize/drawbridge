@@ -3,6 +3,7 @@ require:
 
 setup: require
 	@./gopath.sh
+	@echo GOPATH=$(GOPATH)
 	export GODEBUG=netdns=cgo
 	cd $(GOPATH)/src/github.com/vulcanize/drawbridge
 	git config url."git@github.com:".insteadOf "https://github.com/"
@@ -51,6 +52,8 @@ compile: abigen
 	go build -gcflags='-N -l' -o ./build/drawbridge ./cmd/drawbridge.go
 
 dep:
+	@./gopath.sh
+	@echo GOPATH=$(GOPATH)
 	dep ensure -v
 	cp -r \
       "${GOPATH}/src/github.com/ethereum/go-ethereum/crypto/secp256k1/libsecp256k1" \
