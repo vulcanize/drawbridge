@@ -13,7 +13,7 @@ test:
 	NODE_ENV=test truffle test
 
 testnet:
-	ganache-cli -m "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat" -b 1 -v
+	ganache-cli -m "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat" -v
 
 develop:
 	truffle develop --log

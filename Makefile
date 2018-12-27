@@ -41,7 +41,7 @@ test: compile
 compile-extract-abi:
 	go build -o build/extract-abi ./cmd/extract_abi.go
 
-abigen: compile-contracts compile-extract-abi
+abigen: compile-extract-abi
 	mkdir -p ./build/abi
 	./build/extract-abi --contracts ./solidity/build/contracts/LightningERC20.json,./solidity/build/contracts/ERC20.json --output-dir ./build/abi
 	abigen --abi ./build/abi/LightningERC20.json --pkg contracts --type LightningERC20 --out ./pkg/contracts/lighting_erc20.go

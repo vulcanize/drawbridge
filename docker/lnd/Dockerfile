@@ -11,7 +11,7 @@ RUN apk add --no-cache \
     git \
     make
 
-WORKDIR /go/src/github.com/lightningnetwork/lnd
+WORKDIR $GOPATH/src/github.com/lightningnetwork/lnd
 
 RUN git clone https://github.com/lightningnetwork/lnd . \
 &&  git checkout 9205720bea931d73e55a886f94d21a759180ff2b \

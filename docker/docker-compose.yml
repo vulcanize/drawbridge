@@ -45,17 +45,46 @@ services:
             - shared:/rpc
         entrypoint: ["./start-lnd.sh"]
 
-    alice:
+    truffle:
+        image: truffle
+        build:
+          context: ../
+          dockerfile: docker/truffle/Dockerfile
+        ports:
+          - "8545:8545"
+        environment:
+            - DOCKER=true
+        entrypoint: ["./start-truffle.sh"]
+
+    pg:
+        image: postgres
+        # restart: always
+        environment:
+          POSTGRES_PASSWORD:
+          POSTGRES_DB: drawbridge
+        ports:
+          - "5432:5432"
+        build:
+          context: ../
+          dockerfile: docker/postgres/Dockerfile
+
+    pg_admin:
+        image: adminer
+        # restart: always
+        ports:
+          - "8080:8080"
+
+    alice_lnd:
       extends: lnd
-      container_name: alice
+      container_name: alice_lnd
       links:
           - "btcd:blockchain"
       ports:
         - "10009:10009"
 
-    bob:
+    bob_lnd:
       extends: lnd
-      container_name: bob
+      container_name: bob_lnd
       links:
           - "btcd:blockchain"
       ports:
@@ -65,12 +94,30 @@ services:
       build:
         context: ../
         dockerfile: docker/drawbridge/Dockerfile
-      links:
-        - "alice:lnd"
       volumes:
         - shared:/rpc
-      entrypoint: ["docker/drawbridge/start-drawbridge.sh"]
 
+    alice_db:
+      extends: drawbridge
+      container_name: alice_db
+      links:
+          - "truffle:ethereum"
+          - "alice_lnd:lnd"
+      ports:
+        - "8080:8080"
+        - "9735:9735"
+      entrypoint: ["make start"]
+
+    bob_db:
+      extends: drawbridge
+      container_name: bob_db
+      links:
+          - "truffle:ethereum"
+          - "bob_lnd:lnd"
+      ports:
+        - "8081:8080"
+        - "9736:9735"
+      entrypoint: ["./start-drawbridge.sh"]
 
 volumes:
   # shared volume is need to store the btcd rpc certificates and use it within

@@ -1,21 +1,21 @@
+# -------- BUILDER ----------
 FROM golang:1.10-alpine as builder
 
 MAINTAINER Alex Kawas <vulcanize.io>
 
+# this only works because the context is set in the docker-compose config to be the repo root
 COPY . /go/src/github.com/vulcanize/drawbridge
 
 ENV GODEBUG netdns=cgo
 
-WORKDIR /go/src/github.com/vulcanize/drawbridge
+WORKDIR $GOPATH/src/github.com/vulcanize/drawbridge
 
 RUN apk add --no-cache \
     alpine-sdk \
     nodejs \
     nodejs-npm \
+    python \
 &&  curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh \
-&&  npm i -g truffle \
-&&  cd solidity \
-&&  npm install --ignore-scripts \
 &&  cd /go/src/github.com/vulcanize/drawbridge \
 &&  mv /go/src/github.com/vulcanize/drawbridge/docker/drawbridge/abigen /bin/ \
 &&  go get -v github.com/ethereum/go-ethereum \
@@ -25,8 +25,12 @@ RUN apk add --no-cache \
         "vendor/github.com/ethereum/go-ethereum/crypto/secp256k1/" \
 &&  make compile
 
+# --------- FINAL -----------
+
 FROM alpine as final
 
 COPY --from=builder /go/src/github.com/vulcanize/drawbridge/build/drawbridge /bin/
 COPY start-drawbridge.sh .
+COPY local-config.yml .
+COPY docker/lnd/admin.macaroon .
 RUN chmod +x start-drawbridge.sh
