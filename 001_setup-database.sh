@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+
+# non-essential for docker setup, and only occasionally for local setup
 PSQL=(`which psql`)
 PGEXISTS=(`$PSQL -tAc "SELECT 1 FROM pg_roles WHERE rolname='postgres'"`)
 if [ ! $PGEXISTS ]; then
@@ -9,18 +11,20 @@ else
   echo "Database user found: postgres"
 fi
 
-DBEXISTS=(`$PSQL -lqt | cut -d \| -f 1 | grep -w drawbridge | sed -e 's/^[ \t]*//'`)
+# non-essential for docker setup; essential for local setup
+DBEXISTS=(`$PSQL -U postgres -lqt | cut -d \| -f 1 | grep -w drawbridge | sed -e 's/^[ \t]*//'`)
 if [ -z $DBEXISTS ]; then
   echo "Creating drawbridge database..."
-  createdb drawbridge
+  createdb -U postgres drawbridge
 else
   echo "Database found: drawbridge"
 fi
 
-DBEXISTS=(`$PSQL -lqt | cut -d \| -f 1 | grep -w drawbridge_2 | sed -e 's/^[ \t]*//'`)
+# essential for both docker and local setup
+DBEXISTS=(`$PSQL -U postgres -lqt | cut -d \| -f 1 | grep -w drawbridge_2 | sed -e 's/^[ \t]*//'`)
 if [ -z $DBEXISTS ]; then
   echo "Creating drawbridge_2 database..."
-  createdb drawbridge_2
+  createdb -U postgres drawbridge_2
 else
   echo "Database found: drawbridge_2"
 fi

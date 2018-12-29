@@ -9,7 +9,7 @@ setup: require
 	go get -v github.com/ethereum/go-ethereum
 
 setup-database:
-	@./setup-database.sh
+	@./001_setup-database.sh
 	
 compile-contracts:
 	@$(MAKE) -C ./solidity compile
@@ -63,7 +63,7 @@ clean:
 	rm -rf ./pkg/contracts/*.go
 
 start: compile
-	./build/drawbridge --config ./local-config.yml
+	./build/drawbridge --config ./alice-config.yml --database-url $(DATABASE_URL)
 
 make start-debug: compile
 	dlv --listen=:2345 --headless=true --api-version=2 exec ./build/drawbridge -- --config ./local-config.yml

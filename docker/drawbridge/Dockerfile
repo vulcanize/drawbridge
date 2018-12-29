@@ -15,6 +15,7 @@ RUN apk add --no-cache \
     nodejs \
     nodejs-npm \
     python \
+    make \
 &&  curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh \
 &&  cd /go/src/github.com/vulcanize/drawbridge \
 &&  mv /go/src/github.com/vulcanize/drawbridge/docker/drawbridge/abigen /bin/ \
@@ -30,7 +31,7 @@ RUN apk add --no-cache \
 FROM alpine as final
 
 COPY --from=builder /go/src/github.com/vulcanize/drawbridge/build/drawbridge /bin/
-COPY start-drawbridge.sh .
-COPY local-config.yml .
-COPY docker/lnd/admin.macaroon .
-RUN chmod +x start-drawbridge.sh
+COPY alice-config.yml /root/
+COPY bob-config.yml /root/
+COPY docker/lnd/admin.macaroon /root/
+COPY docker/btcd/rpc.cert /root/

@@ -61,18 +61,19 @@ services:
         # restart: always
         environment:
           POSTGRES_PASSWORD:
-          POSTGRES_DB: drawbridge
+          POSTGRES_DB: dummy
         ports:
           - "5432:5432"
         build:
           context: ../
           dockerfile: docker/postgres/Dockerfile
 
-    pg_admin:
-        image: adminer
-        # restart: always
-        ports:
-          - "8080:8080"
+    # use if need to debug database
+    # pg_admin:
+    #    image: adminer
+    #    restart: always
+    #    ports:
+    #      - "8082:8080"
 
     alice_lnd:
       extends: lnd
@@ -100,24 +101,45 @@ services:
     alice_db:
       extends: drawbridge
       container_name: alice_db
-      links:
-          - "truffle:ethereum"
-          - "alice_lnd:lnd"
+      depends_on:
+        - truffle
+        - pg
+        - alice_lnd
       ports:
         - "8080:8080"
         - "9735:9735"
-      entrypoint: ["make start"]
+      entrypoint: ["/bin/drawbridge",
+        "--config", "/root/alice-config.yml",
+        "--database-url", "postgres://postgres@pg:5432/drawbridge?sslmode=disable",
+        "--eth-rpc-url", "http://truffle:8545",
+        "--lnd-host", "alice_lnd",
+        "--lnd-cert-file", "/root/rpc.cert",
+        "--lnd-macaroon-file", "/root/admin.macaroon",
+        "--rpc-ip", "0.0.0.0"]
 
     bob_db:
       extends: drawbridge
       container_name: bob_db
-      links:
-          - "truffle:ethereum"
-          - "bob_lnd:lnd"
+      depends_on:
+        - truffle
+        - pg
+        - bob_lnd
       ports:
         - "8081:8080"
         - "9736:9735"
-      entrypoint: ["./start-drawbridge.sh"]
+      entrypoint: ["/bin/drawbridge",
+        "--config", "/root/bob-config.yml",
+        "--database-url", "postgres://postgres@pg:5432/drawbridge_2?sslmode=disable",
+        "--eth-rpc-url", "http://truffle:8545",
+        "--lnd-host", "bob_lnd",
+        "--lnd-port", "10009",
+        "--lnd-cert-file", "/root/rpc.cert",
+        "--lnd-macaroon-file", "/root/admin.macaroon",
+        "--rpc-ip", "0.0.0.0",
+        "--rpc-port", "8080",
+        "--p2p-port", "9735",
+        "--bootstrap-peers", "alice_db:9735|0x02ce7edc292d7b747fab2f23584bbafaffde5c8ff17cf689969614441e0527b900"
+        ]
 
 volumes:
   # shared volume is need to store the btcd rpc certificates and use it within
