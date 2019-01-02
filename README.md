@@ -1,5 +1,16 @@
-## Running Drawbridge prototype locally
-To build for deployment, clone and skip to [Build images, create and run containers](#buildandrun)
+## Running Drawbridge (prototype) for deployment
+
+### 1. Clone into $GOPATH
+```
+git clone git@github.com:vulcanize/drawbridge $GOPATH/src/github.com/vulcanize/drawbridge
+```
+
+### 2. Build images, create and run containers
+```
+cd docker && docker-compose up
+```
+
+## Running Drawbridge (prototype) locally for development
 
 ### 0. TL;DR macOS/Homebrew setup
 ```

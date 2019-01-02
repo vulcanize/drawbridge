@@ -14,8 +14,12 @@ RUN apk add --no-cache \
 WORKDIR $GOPATH/src/github.com/lightningnetwork/lnd
 
 RUN git clone https://github.com/lightningnetwork/lnd . \
-&&  git checkout 9205720bea931d73e55a886f94d21a759180ff2b \
-&&  make \
+&&  git checkout 9205720bea931d73e55a886f94d21a759180ff2b
+
+COPY Gopkg.toml .
+COPY Gopkg.lock .
+
+RUN make \
 &&  make install
 
 # Start a new, final image to reduce size.

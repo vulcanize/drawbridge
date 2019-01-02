@@ -53,6 +53,8 @@ mkdir -p /root/.lnd/data
 cp /root/macaroons.db /root/.lnd/data
 
 exec lnd \
+    --nobootstrap \
+    --tor.dns= \
     --noencryptwallet \
     --logdir="/data" \
     "--$CHAIN.active" \
