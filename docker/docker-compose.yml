@@ -108,7 +108,7 @@ services:
       ports:
         - "8080:8080"
         - "9735:9735"
-      entrypoint: ["/bin/drawbridge",
+      entrypoint: ["./wait-for.sh", "tcp:truffle:8545", "/bin/drawbridge",
         "--config", "/root/alice-config.yml",
         "--database-url", "postgres://postgres@pg:5432/drawbridge?sslmode=disable",
         "--eth-rpc-url", "http://truffle:8545",
@@ -127,7 +127,7 @@ services:
       ports:
         - "8081:8080"
         - "9736:9735"
-      entrypoint: ["/bin/drawbridge",
+      entrypoint: ["./wait-for.sh", "tcp:truffle:8545", "/bin/drawbridge",
         "--config", "/root/bob-config.yml",
         "--database-url", "postgres://postgres@pg:5432/drawbridge_2?sslmode=disable",
         "--eth-rpc-url", "http://truffle:8545",

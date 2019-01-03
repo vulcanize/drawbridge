@@ -21,10 +21,6 @@ RUN  cd solidity \
 &&  npm i --ignore-scripts \
 &&  make compile
 
-RUN  pwd && ls -al \
-&& cd solidity/build && pwd && ls -al \
-&& cd contracts && pwd && ls -al
-
 # -------- BUILDER ----------
 FROM golang:1.10-alpine as builder
 
@@ -35,15 +31,6 @@ ENV GODEBUG netdns=cgo
 # this only works because the context is set in the docker-compose config to be the repo root
 COPY . $GOPATH/src/github.com/vulcanize/drawbridge
 COPY --from=buildtruffle /code/solidity/build/ $GOPATH/src/github.com/vulcanize/drawbridge/solidity/build
-
-RUN pwd \
-&&  ls -al \
-&&  cd solidity \
-&&  ls -al \
-&&  cd build \
-&&  ls -al \
-&&  cd contracts \
-&&  ls -al
 
 RUN apk add --no-cache \
     alpine-sdk \
@@ -63,6 +50,15 @@ RUN apk add --no-cache \
 # --------- FINAL -----------
 
 FROM alpine as final
+
+RUN apk add \
+    nodejs \
+    nodejs-npm \
+&&  npm -g config set user root \
+&&  npm i -g wait-on
+
+COPY docker/drawbridge/wait-for.sh /
+RUN chmod +x wait-for.sh
 
 COPY --from=builder /go/src/github.com/vulcanize/drawbridge/build/drawbridge /bin/
 COPY alice-config.yml /root/
