@@ -1,6 +1,6 @@
 FROM golang:1.10-alpine3.7 AS builder
 
-MAINTAINER Alex Kawas <vulcanize.io>
+LABEL "maintainer"="git@gossamr.org"
 
 ENV VERSION v3.2.0
 

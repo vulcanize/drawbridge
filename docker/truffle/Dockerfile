@@ -1,6 +1,6 @@
 FROM golang:1.10-alpine as final
   
-MAINTAINER Alex Kawas <vulcanize.io>
+LABEL "maintainer"="git@gossamr.org"
 
 RUN mkdir /code
 
